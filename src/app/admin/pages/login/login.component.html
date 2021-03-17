@@ -1,0 +1,32 @@
+<main class="form-signin">
+  <form class="mt-5" #form="ngForm" (ngSubmit)="onSubmit(form.valid)">
+
+    <h1 class="text-center h3 mb-3 fw-normal">Sign In</h1>
+    <p>username: admin | password: 1234</p>
+
+    <div class="mb-3">
+      <input type="text" class="form-control" id="username" placeholder="username" required autofocus
+             #username="ngModel" [(ngModel)]="model.username" name="username"
+             [ngClass]="{'is-invalid': username.invalid && (username.dirty || form.submitted)}">
+      <div class="invalid-feedback">
+        <text *ngIf="username.errors?.required">Username is required.</text>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input type="password" class="form-control" id="password" placeholder="password" required
+             #password="ngModel" [(ngModel)]="model.password" name="password"
+             [ngClass]="{'is-invalid': password.invalid && (password.dirty || form.submitted)}">
+      <div class="invalid-feedback">
+        <text *ngIf="password.errors?.required">Password is required.</text>
+      </div>
+    </div>
+
+
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <p class="text-center mt-5 mb-3 text-muted">
+      &copy; 2021 Copyright:
+      <a class="text-dark" href="https://github.com/furkanisitan">furkanisitan</a>
+    </p>
+  </form>
+</main>

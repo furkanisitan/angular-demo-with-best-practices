@@ -1,0 +1,22 @@
+<div class="container">
+
+  <header class="public-header py-3">
+    <div class="row">
+      <div class="col-12 col-sm-6 mb-2 mb-sm-0">
+        <a class="public-header-logo text-dark" routerLink="/">angular demo</a>
+      </div>
+      <div class="col-12 col-sm-6 d-flex justify-content-start justify-content-sm-end align-items-center">
+        <form *ngIf="searchBarVisible" class="d-flex">
+          <input name="searchFilter" class="form-control form-control-sm me-2" type="search" placeholder="Search"
+                 aria-label="Search" [(ngModel)]="searchFilter" (ngModelChange)="onChangeSearchFilter($event)">
+        </form>
+
+        <a *ngIf="isLogged; else adminLink" class="btn btn-sm btn-outline-dark" routerLink="/admin">Admin</a>
+        <ng-template #adminLink>
+          <a class="btn btn-sm btn-outline-secondary" routerLink="/admin/login">Sign In</a>
+        </ng-template>
+      </div>
+    </div>
+  </header>
+
+</div>

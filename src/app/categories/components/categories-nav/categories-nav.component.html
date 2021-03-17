@@ -1,0 +1,11 @@
+<!--  categories nav -->
+<div class="py-1 mb-2">
+  <nav class="nav d-flex justify-content-center">
+    <a class="p-2 link-secondary" routerLink="{{routerText}}" routerLinkActive="text-primary"
+       [routerLinkActiveOptions]="{exact: true}">All Products</a>
+
+    <a *ngFor="let category of categories$ | async" class="p-2 link-secondary" routerLink="{{routerText}}"
+       [queryParams]="{ categoryId: category.id }" routerLinkActive="text-primary"
+       [routerLinkActiveOptions]="{exact: true}">{{category.name}}</a>
+  </nav>
+</div>

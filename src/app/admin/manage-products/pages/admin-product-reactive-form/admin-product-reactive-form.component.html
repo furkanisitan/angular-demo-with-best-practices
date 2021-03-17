@@ -1,0 +1,81 @@
+<h2>Product Reactive Form</h2>
+
+<form [formGroup]="form" #formDir="ngForm" (ngSubmit)="onSubmit(formDir)">
+
+  <div class="row mb-2 g-2">
+
+    <div class="col-md">
+      <div class="form-floating">
+        <input type="text" class="form-control" id="title" placeholder="Title" required
+               formControlName="title"
+               [ngClass]="{'is-invalid': title.invalid && (title.dirty || formDir.submitted)}">
+        <label for="title">Title</label>
+        <div class="invalid-feedback">
+          <text *ngIf="title.errors?.required">Title is required.</text>
+          <text *ngIf="title.errors?.minlength as err">
+            Title must be at least {{err.requiredLength}} characters long.
+          </text>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md">
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="description" id="description" required
+                  formControlName="description"
+                  [ngClass]="{'is-invalid': description.invalid && (description.dirty || formDir.submitted)}">
+        </textarea>
+        <label for="description">Description</label>
+        <div class="invalid-feedback">
+          <text *ngIf="description.errors?.required">Description is required.</text>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-2 g-2">
+
+    <div class="col-md">
+      <div class="form-floating">
+        <input type="number" step="0.1" class="form-control" id="price" placeholder="Price" required
+               formControlName="price"
+               [ngClass]="{'is-invalid': price.invalid && (price.dirty || formDir.submitted)}">
+        <label for="price">Price</label>
+        <div class="invalid-feedback">
+          <text *ngIf="price.errors?.required">Price is required.</text>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md">
+      <div class="form-floating">
+        <select class="form-select" id="category" required
+                formControlName="categoryId"
+                [ngClass]="{'is-invalid': categoryId.invalid && (categoryId.dirty || formDir.submitted)}">
+          <option *ngFor="let category of categories$ | async" [value]="category.id">
+            {{category.name}}
+          </option>
+        </select>
+        <label for="category">Category</label>
+        <div class="invalid-feedback">
+          <text *ngIf="categoryId.errors?.required">Category is required.</text>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mb-2 g-2">
+    <div class="form-floating">
+      <input type="text" class="form-control" id="image" placeholder="image" required
+             formControlName="image"
+             [ngClass]="{'is-invalid': image.invalid && (image.dirty || formDir.submitted)}">
+      <label for="image">Image</label>
+      <div class="invalid-feedback">
+        <text *ngIf="image.errors?.required">Image path/url is required.</text>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,27 @@
+<!--  category list-->
+<app-categories-nav routerText="/products"></app-categories-nav>
+
+<div class="row">
+
+  <ng-container *ngFor="let productArray of products$ | async | filterBy: productFilter | groupByMod:3;
+  index as i;" [ngSwitch]="i">
+
+    <!--Grid column 1-->
+    <div *ngSwitchCase="0" id="gridColumn1" class="col-lg-4 col-md-6 mb-4">
+      <app-product-card *ngFor="let product of productArray" [product]="product"></app-product-card>
+    </div>
+
+    <!--Grid column 2-->
+    <div *ngSwitchCase="1" id="gridColumn2" class="col-lg-4 col-md-6 mb-4">
+      <app-product-card *ngFor="let product of productArray" [product]="product"></app-product-card>
+    </div>
+
+    <!--Grid column 3-->
+    <div *ngSwitchCase="2" id="gridColumn3" class="col-lg-4 col-md-12 mb-4">
+      <app-product-card *ngFor="let product of productArray" [product]="product"></app-product-card>
+    </div>
+
+  </ng-container>
+
+
+</div>
